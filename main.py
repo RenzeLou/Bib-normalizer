@@ -1,5 +1,5 @@
 '''
-capitalize the title
+capitalize the title in your .bib file
 remove all url and doi
 '''
 import argparse
@@ -11,7 +11,7 @@ parser.add_argument('--output',type=str,default="./anthology_cap.bib")
 parser.add_argument('--verbose',action="store_true")
 args = parser.parse_args()
 
-no_cap = ["with","of","for","to","from","and","on","in","under","a","by","the"]
+no_cap = ["with","of","for","to","from","and","on","in","under","a","by","the"]  # preposition
 new_bib = ""
 
 def upper_already_cap(token:str):
