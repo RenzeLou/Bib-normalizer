@@ -1,3 +1,3 @@
 # ref-capitalization: make your reference become elegant
 
-Sometimes
+Sometimes when we
