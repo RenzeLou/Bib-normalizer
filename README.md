@@ -9,3 +9,5 @@ mac add example
 dev add again
 
 dev delevopment down
+
+dev down
