@@ -8,4 +8,4 @@ mac add example
 
 dev add again
 
-dev delevopment going
+dev delevopment down
