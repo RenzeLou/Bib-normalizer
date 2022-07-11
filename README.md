@@ -1,6 +1,6 @@
 # bib-capitalization: make your reference become elegant
 
-Sometimes when we should
+I fix the bug in line 3
 
 add example figures here
 
