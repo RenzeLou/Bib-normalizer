@@ -13,3 +13,5 @@ dev delevopment down
 dev down
 
 this is mac!
+
+win update dev
