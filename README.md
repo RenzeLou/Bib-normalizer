@@ -14,4 +14,9 @@ dev down
 
 this is mac!
 
+
 mac update master
+
+win update master
+
+manually fix the conflicts on mac
