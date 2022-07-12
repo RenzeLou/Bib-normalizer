@@ -14,9 +14,17 @@ dev down
 
 this is mac!
 
+<<<<<<< HEAD
 
 mac update master
 
 win update master
 
 manually fix the conflicts on mac
+
+
+mac update dev
+
+win update dev
+
+manually fix the conflicts on master
