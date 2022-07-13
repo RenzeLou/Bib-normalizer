@@ -27,4 +27,6 @@ mac update dev
 
 win update dev
 
-manually fix the conflicts on master
+del all
+
+des2
