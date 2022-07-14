@@ -3,6 +3,7 @@ capitalize the title in your .bib file
 remove all url and doi
 '''
 import argparse
+from multiprocessing.connection import wait
 
 parser = argparse.ArgumentParser()
 
@@ -13,7 +14,9 @@ args = parser.parse_args()
 
 no_cap = ["with","of","for","to","from","and","on","in","under","a","by","the"]  # preposition
 # dele = ['url', 'doi', 'publisher', 'organization'] 
-remain = ['title','author', 'booktitl', 'journal', 'year', 'pages', 'volume', 'number'] # reserved attributes, can added customly
+cus_remain = ['title','author', 'booktitle', 'journal', 'year', 'pages', 'volume', 'number'] # reserved attributes, can be customized
+fix = ['@']
+remain = cus_remain + fix
 new_bib = ""
 
 def upper_already_cap(token:str):
@@ -30,7 +33,7 @@ def upper_all_tokens(title:str):
     all_tokens = title.split(" ")
     new_tokens = []
     for i,tk in enumerate(all_tokens):
-        if i == 0 or tk.lower() not in no_cap:
+        if i == 0 or tk.lower() not in no_cap:  # or tk[0].isupper
             ## must capitalize
             tk = tk.replace("{","")
             tk = tk.replace("}","")
@@ -44,16 +47,18 @@ def upper_all_tokens(title:str):
 def in_line(strr,line):
     new_str = strr.lower()
     new_line = line.lower()
-    return strr in line
+    return new_str in new_line
 
 with open(args.input,"r",encoding="utf-8") as f:
     ori_bib = f.readlines()
     
 for line in ori_bib:
     new_line = None
-    if 'url' in line or 'doi' in line or 'publisher' in line:
+    # if 'url' in line or 'doi' in line or 'publisher' in line:
+    #     new_line = ""  ## remove
+    if not any([in_line(t,line) for t in remain]) and line != '}\n' and line != '}':
         new_line = ""  ## remove
-    elif ('title=' in line or 'title =' in line) and 'booktitle' not in line:
+    elif (in_line('title=',line) or in_line('title =',line)) and not in_line('booktitle',line):
         start = line.index('{')  ## the first position of '{'
         end = len(line) - line[::-1].index("}")  ## the last position of '}'
         title = line[start+1:end-1]
@@ -62,7 +67,10 @@ for line in ori_bib:
         new_line = left + new_title + right
     else:
         new_line = line
-    new_bib += new_line
+    
+    new_bib += '\n' + new_line if '@' in new_line else new_line
+
+new_bib = '% Encoding: UTF-8\n' + new_bib[1:] # add UTF-Encoding
 
 if not args.verbose:
     print(new_bib)
