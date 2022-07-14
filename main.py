@@ -6,12 +6,14 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--input',type=str,default="./anthology.bib")
-parser.add_argument('--output',type=str,default="./anthology_cap.bib")
-parser.add_argument('--verbose',action="store_true")
+parser.add_argument('-i','--input',type=str,default="./anthology.bib")
+parser.add_argument('-o','--output',type=str,default="./anthology_cap.bib")
+parser.add_argument('-v','--verbose',action="store_true")
 args = parser.parse_args()
 
 no_cap = ["with","of","for","to","from","and","on","in","under","a","by","the"]  # preposition
+# dele = ['url', 'doi', 'publisher', 'organization'] 
+remain = ['title','author', 'booktitl', 'journal', 'year', 'pages', 'volume', 'number'] # reserved attributes, can added customly
 new_bib = ""
 
 def upper_already_cap(token:str):
@@ -38,6 +40,11 @@ def upper_all_tokens(title:str):
             new_tokens.append(tk)
     
     return " ".join(new_tokens)
+
+def in_line(strr,line):
+    new_str = strr.lower()
+    new_line = line.lower()
+    return strr in line
 
 with open(args.input,"r",encoding="utf-8") as f:
     ori_bib = f.readlines()
