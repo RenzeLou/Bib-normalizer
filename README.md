@@ -1,4 +1,4 @@
-# bib-normalizer: normalize your BibTex
+# Bib-normalizer: normalize your BibTex
 
 ## Function 
 
@@ -7,13 +7,13 @@
 
 ## Usage
 
-Put your `.bib` file under this folder (e.g., `test.bib`), then use the following command: 
+Put your `.bib` file under this folder (e.g., `test.bib`), then run the following command: 
 
 ```shell
 python main.py --input test.bib --output test_cap.bib
 ```
 
-By default, it will only remain some attributes (e.g., author, title). Change line 17 according to your need.
+By default, it will only remain some attributes (e.g., author, title). Change line 17 in the `main.py` according to your need.
 ## Demo
 
 For example, there is a plain BibTex:
@@ -35,7 +35,7 @@ For example, there is a plain BibTex:
 }
 ```
 
-After compiling, it looks like this below. Obviously, it not very elegant because the first letters of some words are not capitalized and there are so many redundant information, e.g., `Florence, Italy`, `10.18653/v1/P19-1133`.
+After compiling, it looks like this below. Obviously, it is not very elegant because the first letters of some words in the title are not capitalized, and there is so much redundant information, e.g., `Florence, Italy`, `10.18653/v1/P19-1133`.
 
 ![avatar](./figures/neg.png)
 
@@ -51,6 +51,6 @@ A normalized BibTex should be like this:
 }
 ```
 
-You can find that all words are capitalized, except for the prepositions. Some useless information has been removed. 
+You can find that all words in the title are capitalized, except for the prepositions. Some useless information has been removed. 
 
 ![avatar](./figures/pos.png)
