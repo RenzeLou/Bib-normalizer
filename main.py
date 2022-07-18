@@ -49,16 +49,22 @@ def in_line(strr,line):
     new_line = line.lower()
     return new_str in new_line
 
+def find_index(line,substr):
+    if substr in line:
+        return line.index('=')
+    else:
+        return len(line)
+
 with open(args.input,"r",encoding="utf-8") as f:
     ori_bib = f.readlines()
     
 for line in ori_bib:
     new_line = None
-    # if 'url' in line or 'doi' in line or 'publisher' in line:
-    #     new_line = ""  ## remove
-    if not any([in_line(t,line) for t in remain]) and line != '}\n' and line != '}':
+    com_line = line[:find_index(line,'=')].strip()
+    # print(com_line)
+    if not any([in_line(t,com_line) for t in remain]) and line != '}\n' and line != '}':
         new_line = ""  ## remove
-    elif (in_line('title=',line) or in_line('title =',line)) and not in_line('booktitle',line):
+    elif in_line('title',com_line) and not in_line('booktitle',com_line):
         start = line.index('{')  ## the first position of '{'
         end = len(line) - line[::-1].index("}")  ## the last position of '}'
         title = line[start+1:end-1]
