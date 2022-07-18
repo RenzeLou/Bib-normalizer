@@ -2,9 +2,12 @@
 
 ## Function 
 
-1.  Capitalize the title of each ref.
+1.  Capitalize the title of each reference.
 2.  Remove some redundant or useless attributes. e.g., url, doi.
 
+## Requirement
+
+- python3
 ## Usage
 
 Put your `.bib` file under this folder (e.g., `test.bib`), then run the following command: 
