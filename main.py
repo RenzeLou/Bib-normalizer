@@ -7,9 +7,9 @@ from multiprocessing.connection import wait
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-i','--input',type=str,default="./anthology.bib")
-parser.add_argument('-o','--output',type=str,default="./anthology_cap.bib")
-parser.add_argument('-v','--verbose',action="store_true")
+parser.add_argument('-I','--input',type=str,default="./anthology.bib")
+parser.add_argument('-O','--output',type=str,default="./anthology_cap.bib")
+parser.add_argument('-V','--verbose',action="store_true")
 args = parser.parse_args()
 
 no_cap = ["with","of","for","to","from","and","on","in","under","a","by","the"]  # preposition
